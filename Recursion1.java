@@ -1,6 +1,6 @@
 
 
-public class Recursion {
+public class Recursion1 {
     public static void moveALLX(String str,int idx,int count,String newString){
         if(idx == str.length()){
             for(int i=0;i<count;i++){
