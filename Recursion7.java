@@ -1,5 +1,5 @@
 public class Recursion7{
-    public static int countPaths(int i,intj,int n,int m){
+    public static int countPaths(int i,int j,int n,int m){
         if(i==n|| j==m){
             return 0; // Out of bounds
         if(i==n-1&& j==m-1){
