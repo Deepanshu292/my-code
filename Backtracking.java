@@ -1,19 +1,18 @@
-public class Backtracking {
-    public static void printPermutation(String str,int idx,String perm){
-        if(str.length()==0){
-            System.out.println(perm);
+public class Recursion7 {
+    public static void printSubsets(String str, String subset, int idx) {
+        if (idx == str.length()) {
+            System.out.println(subset);
             return;
         }
-        for(int i=0;i<str.length();i++){
-            char currChar=str.charAt(i);
-            String newStr=str.substring(0,i)+str.substring( i+1);
-            printPermutation(newStr,idx+1,perm+currChar);
-        }
+        
+        // Exclude the current character
+        printSubsets(str, subset, idx + 1);
+        
+        // Include the current character
+        printSubsets(str, subset + str.charAt(idx), idx + 1);
     }
+    
     public static void main(String[] args) {
         String str = "abc";
-        printPermutation(str, 0, "");
-    }
-
+        printSubsets(str, "", 0);
     
-}
