@@ -77,19 +77,46 @@ class LL {
       public int getSize() {
         return size;
     }
+    public void reverseIterate(){
+        if(head ==null || head.next == null){
+            rturn;
+        }
+        Node prevNode =head;
+        Node currNode =head.next;
+        while(currNode!=null){
+            Node nextNode =currNode.next;
+            currNode =prevNode;
+            prevNode =nextNode;
+            currNode =nextNode;
+
+        }
+        head.next =null;
+        head =prevNode;
+
+    }
+    public Node reverseRecursive(Node head){
+        if(head.next ==null || head ==null){
+            return head;
+        }
+        Node newHead =reverseRecursive(head.next);
+        head.next.next =head;
+        head.next=null;
+
+
+        return newHead;
+
+    }
     public static void main(String[] args) {
         LL list =new LL();
-        list.addFirst("Hello");
-        list.addFirst("World");
-        list.printList();
-        list.addLast("!");
-        list.printList();
-        list.deleteFirst();
-        list.printList();
-        list.deteLast();    
-        list.printList();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
         System.out.println("Size of the list: " + list.getSize());
-        
+        list.printList();
+        list.reverseIterate();  
+        list.printList();
+        list.head = list.reverseRecursive(list.head);
     }
   
     
