@@ -1,49 +1,39 @@
+
+import java.util.List;
+
 public class StackClass {
-    static class Node{
-        static Node head;
-        int data;
-        Node next;
-        
-        public Node(int data){
-            this.data =data;
-            next=null;
-        }
-    }
-    static class Stack{
-        public static Node head;
+   static class Stack{
+        ArrayList<Integer> list=new ArrayList<>();
         public static boolean isEmpty(){
-           return head ==null;
+            return List.size()==0;
         }
+        //push
         public static void push(int data){
-            Node newNode =newNode(data);
-            if(isEmpty()){
-                head =newNode;
-                return;
-                
-
-
-            }
-            newNode.next =head;
-            head  =newNode;
+            list.add(data);
         }
+        //pop
         public static int pop(){
             if(isEmpty()){
-                return -1;
-
+                System.out.println("Stack is empty");
+                return -1; // or throw an exception
             }
-            int top=head.data;
-            head =head.next;
+            int top =List.get()(List.size()-1);
+            List.remove(List.size()-1);
             return top;
         }
+        //peek
         public static int peek(){
             if(isEmpty()){
-                return -1;
+                System.out.println("Stack is empty");
+                return -1; // or throw an exception
             }
-            return head.data;
+            return List.get(List.size()-1);
+
         }
 
     }
-    public static void main(String args[]){
+
+       public static void main(String args[]){
         Stack s =new Stack();
         s.push(1);
         s.push(2);
