@@ -107,16 +107,17 @@ class LL {
 
     }
     public static void main(String[] args) {
-        LL list =new LL();
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        list.addLast(4);
-        System.out.println("Size of the list: " + list.getSize());
-        list.printList();
-        list.reverseIterate();  
-        list.printList();
-        list.head = list.reverseRecursive(list.head);
+        Queue q =new Queue();
+        q.add(1);
+        q.add(2);
+        q.add(3);       
+        q.add(4);
+        q.add(5);
+        while(!q.isEmpty()){
+            System.out.println(q.peek());
+            q.remove();
+        }
+     
     }
   
     
