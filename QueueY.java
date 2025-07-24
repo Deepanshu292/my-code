@@ -3,21 +3,28 @@ public class QueueY {
         static int arr[];
         static int size;
         static int rear =-1;
+        static int front =-1; 
 
         Queue(int n){
             this.size = n;
             arr = new int[n];
         }
         public static boolean isEmpty(){
-            return rear == -1;
+            return rear == -1 && front ==-1;
+        }
+        public static boolean isFull(){
+            return (rear+1) % size == front;
         }
         //enqueue
         public static void add(int data){
-            if(rear ==size-1){
+            if(isFull()){
                 System.out.println("Queue is full");
                 return;
             }
-            rear++;
+            if(front ==-1){
+                front = 0; // Initialize front if queue was empty
+            }
+            rear =(rear+1)%size;
             arr[rear] =data;
 
 
