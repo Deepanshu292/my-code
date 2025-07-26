@@ -128,6 +128,7 @@ public class BST2 {
         System.out.println();
        
         printInRange(root ,6,10);
+        print Root2Leaf(root, new ArrayList<Integer>());
     }
 }
 
