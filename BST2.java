@@ -1,4 +1,5 @@
-public class BST {
+impport java.util.*;
+public class BST2 {
 
     static class Node {
         int data;
@@ -94,6 +95,27 @@ public class BST {
             printInRange(root.right,X,Y);
         }
     }
+    public static void printPath(ArraList<Integer> path){
+        for(int i=0;i<path.size();i++){
+            System.out.print(path.get(i) + " ");
+        }
+        System.out.println();
+    }
+    public static void printRoot2Leaf(Node root ,ArrayList<Integer> path){
+        if(root == null){
+            return;
+        }
+        path.add(root.data);
+        if(root.left == null&& root.right == null){
+            printPath(path);
+
+        }else{
+            printRoot2Leaf(root.left,path);
+            printRoot2Leaf(root.right,path);
+        }
+
+    }
+
 
 
     public static void main(String args[]) {
@@ -108,6 +130,9 @@ public class BST {
         printInRange(root ,6,10);
     }
 }
+
+    
+
 
     
 
