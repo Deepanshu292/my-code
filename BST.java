@@ -1,4 +1,5 @@
-public class BinarySearchTree {
+public class BST {
+
     static class Node {
         int data;
         Node left;
@@ -106,4 +107,7 @@ public class BinarySearchTree {
        
         printInRange(root ,6,10);
     }
+}
+
+    
 }
