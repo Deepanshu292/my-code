@@ -35,16 +35,40 @@ public class wobble3 {
         }
         return true;
     }
+    public static boolean wordBreak(String key){
+        if(key.length()==0){
+            return true;
+        }
+        for(int i =1; i<=key.length();i++){
+            String firstpart =key.substring(0,i);
+            String secpart =key.substring(i);
+            if(search(firstpart)&& wordBreak(secpart)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         String[] words = {"the", "a", "there", "answer"};
-        for (String word : words) {
-            insert(word);
+        // for(String word : words) {
+        //     insert(word);
+        // }
+     //     System.out.println(search("the"));   // true
+     //     System.out.println(search("these")); // false
+     //     System.out.println(search("a"));     // true
+     //     System.out.println(search("answer")); // true
+     //     System.out.println(search("any"));    // false
+     // 
+        String key ="thereaanswer";
+
+         for(int i =0 ; i<words.length;i++){
+            insert(words[i]);
         }
-        System.out.println(search("the"));   // true
-        System.out.println(search("these")); // false
-        System.out.println(search("a"));     // true
-        System.out.println(search("answer")); // true
-        System.out.println(search("any"));    // false
-    }
+        System.out.println(wordBreak(key));
+
+    }    
+
+
+
 }
