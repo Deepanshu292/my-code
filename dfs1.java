@@ -1,7 +1,6 @@
 import java.util.*;
-public class bfs2 {
-    
 
+public class dfs1 {
 
     static class Edge {
         int src;
@@ -21,10 +20,10 @@ public class bfs2 {
         }
 
         // Add edges
-        graph[0].add(new Edge(0, 1, 1)); // Added edge to connect 0 -> 1
+        graph[0].add(new Edge(0, 1, 1));
         graph[0].add(new Edge(0, 2, 2));
 
-        graph[1].add(new Edge(1, 0, 1)); // Optional: add back edge for undirected graph
+        graph[1].add(new Edge(1, 0, 1));
         graph[1].add(new Edge(1, 2, 10));
         graph[1].add(new Edge(1, 3, 0));
 
@@ -36,33 +35,17 @@ public class bfs2 {
         graph[3].add(new Edge(3, 2, -1));
     }
 
-    public static void bfs(ArrayList<Edge> graph[], int V, boolean vis[], int start) {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(start);
+    public static void dfs(ArrayList<Edge> graph[], int curr, boolean vis[]) {
+        System.out.print(curr + " ");
+        vis[curr] = true;
 
-        while (!q.isEmpty()) {
-            int curr = q.remove();
-
-            if (!vis[curr]) {
-                System.out.print(curr + " ");
-                vis[curr] = true;
-
-                for (int i = 0; i < graph[curr].size(); i++) {
-                    Edge e = graph[curr].get(i);
-                    q.add(e.dest);
-                }
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!vis[e.dest]) {
+                dfs(graph, e.dest, vis);
             }
         }
     }
-    public static void  dfs(ArrayList<Edge> graph[],int curr ,boolean vis[]){
-        System.out.println(curr +" ");
-        vis[curr] =true;
-        for(int i =0; i<graph[curr].size();i++){
-            Edge e =graph[curr].get(i);
-            dfs(graph .e.dest,vis)
-        }
-    }
-
 
     public static void main(String args[]) {
         int V = 4;
@@ -72,12 +55,9 @@ public class bfs2 {
 
         boolean vis[] = new boolean[V];
 
-      
-        dfs(graph,V,vis);
+        System.out.println("DFS traversal:");
+        dfs(graph, 0, vis); // Start DFS from node 0
 
         System.out.println();
     }
 }
-
-    
-
