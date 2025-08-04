@@ -1,6 +1,7 @@
 import java.util.*;
+public class bfs2 {
+    
 
-public class bfs1 {
 
     static class Edge {
         int src;
@@ -72,3 +73,6 @@ public class bfs1 {
         System.out.println();
     }
 }
+
+    
+
