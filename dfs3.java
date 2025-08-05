@@ -1,6 +1,6 @@
 import java.util.*;
-public class dfs2 {
-   
+public class dfs3 {
+    import java.util.*;
 
 
 
@@ -19,18 +19,16 @@ public class dfs2 {
             graph[i] = new ArrayList<>();
         }
 
-        // Add edges (undirected graph example)
+        // Add edges (directed graph for cycle detection)
         graph[0].add(new Edge(0, 1, 1));
         graph[0].add(new Edge(0, 2, 1));
 
-        graph[1].add(new Edge(1, 0, 1));
         graph[1].add(new Edge(1, 3, 1));
 
-        graph[2].add(new Edge(2, 0, 1));
         graph[2].add(new Edge(2, 3, 1));
 
-        graph[3].add(new Edge(3, 1, 1));
-        graph[3].add(new Edge(3, 2, 1));
+        // Uncomment below to create a cycle
+        // graph[3].add(new Edge(3, 0, 1));
     }
 
     public static void printAllPath(ArrayList<Edge> graph[], boolean vis[], int curr, String path, int tar) {
@@ -50,42 +48,45 @@ public class dfs2 {
 
         vis[curr] = false;  // backtrack
     }
-    public static isCycleDirected(ArrayList<Edge> graph[],boolean vis[],int curr ,boolean rec[]){
-        vis[curr]=true;
-        rec[curr]=true;
 
-        for(int i =0;i<graph[curr].size();i++){
-            Edge e =graph[curr].get(i);
-            if(rec[e.dest]){
-                return true;
+    public static boolean isCycleDirected(ArrayList<Edge> graph[], boolean vis[], int curr, boolean rec[]) {
+        vis[curr] = true;
+        rec[curr] = true;
 
-            }
-            else if(!vis[e.dest]){
-                if(isCycleDirected(graph,vis,e.dest,rec)){
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (rec[e.dest]) {
+                return true; // cycle found
+            } else if (!vis[e.dest]) {
+                if (isCycleDirected(graph, vis, e.dest, rec)) {
                     return true;
                 }
             }
         }
-        rec[curr]=false;
+
+        rec[curr] = false; // backtrack
         return false;
     }
-
 
     public static void main(String[] args) {
         int V = 4;
         ArrayList<Edge> graph[] = new ArrayList[V];
-        int curr =0;
-        
         createGraph(graph);
-        System.out.println(isCycleDirected(graph,new boolean[V],curr,new boolean[V]));
 
-        // int src = 0;
-        // int tar = 3;
-        // boolean vis[] = new boolean[V];
-        // String path = "";
+        boolean[] visited = new boolean[V];
+        boolean[] recStack = new boolean[V];
+        boolean cycleExists = false;
 
-        // System.out.println("All paths from " + src + " to " + tar + ":");
-        // printAllPath(graph, vis, src, path, tar);
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                if (isCycleDirected(graph, visited, i, recStack)) {
+                    cycleExists = true;
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Cycle exists in directed graph: " + cycleExists);
     }
 }
 
