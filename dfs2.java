@@ -1,6 +1,8 @@
 import java.util.*;
+public class dfs2 {
+   
 
-public class dfs1 {
+
 
     static class Edge {
         int src, dest, wt;
@@ -63,3 +65,6 @@ public class dfs1 {
         printAllPath(graph, vis, src, path, tar);
     }
 }
+
+    
+
